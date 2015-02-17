@@ -1,0 +1,3 @@
+fixtures:
+  symlinks:
+    "basic_module_tests": "#{source_dir}"

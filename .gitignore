@@ -1,0 +1,6 @@
+*.swp
+spec/fixtures/
+log
+junit
+Gemfile.lock
+.vagrant
