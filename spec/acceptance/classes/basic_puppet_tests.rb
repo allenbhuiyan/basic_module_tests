@@ -8,7 +8,9 @@ describe "basic_module_test results", :unless => UNSUPPORTED_PLATFORMS.include?(
   manifest = File.open(manifest_file).read
 
   # Now apply the manifest twice.
-  # On the first application, ensure stderr is empty
+  # On the first application, ensure stderr is emptya
+  #
+  # NOTE: apply_manifest is a beaker function that applies a puppet manifest to a node under test
   describe 'on first application' do
     it 'should have empty stderr' do
       apply_manifest(manifest, :catch_failures => true) do |r|
@@ -18,6 +20,8 @@ describe "basic_module_test results", :unless => UNSUPPORTED_PLATFORMS.include?(
   end
 
   # On the second application, ensure stderr is empty and the exit code is 0 (no changes)
+  #
+  # NOTE: apply_manifest is a beaker function that applies a puppet manifest to a node under test
   describe 'on second application' do
     it 'should have empty stderr and zero exit code' do
       apply_manifest(manifest, :catch_failures => true) do |r|
@@ -31,6 +35,8 @@ describe "basic_module_test results", :unless => UNSUPPORTED_PLATFORMS.include?(
   #   1. /tmp/test exists
   #   2. /tmp/test is owned by root
   #   3. /tmp/test has a group of root
+  #
+  # NOTE: This is pure serverspec. Beaker's job ended when the manifest was applied.
   describe file('/tmp/test') do
     it { should be_file }
     it { should be_owned_by('root') }
